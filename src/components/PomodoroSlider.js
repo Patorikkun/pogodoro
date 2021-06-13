@@ -8,10 +8,13 @@ const PomodoroSlider = () => {
       vertical={false}
       style={{
         display: "grid",
-        gridTemplateColumns: "repeat(35, 0.25em)",
-        border: "1px solid yellow",
+        gridTemplateColumns: "repeat(100, 0.25em)",
+        //border: "1px solid yellow",
         width: "4em",
         height: "50%",
+        alignItems: "center",
+        cursor: "grab",
+        marginBottom: "1rem",
       }}
     >
       <BigTick>
@@ -86,8 +89,8 @@ const TickContainer = styled.div`
 `;*/
 
 const Tick = styled.div`
-  // border: 1px solid red;
-  height: 0.4em;
+  //border: 1px solid red;
+  height: 0.3em;
   width: 0.05em;
   background-color: white;
   border-radius: 1em;
@@ -95,7 +98,7 @@ const Tick = styled.div`
   // margin: 0 1em;
 
   &.big {
-    height: 0.7em;
+    height: 60%;
   }
 `;
 
@@ -103,11 +106,11 @@ const BigTick = styled.div`
   // border: 1px solid red;
   //align-self: flex-end;
   width: 0.05em;
-  height: 5.5rem;
+  height: 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
 `;
 
 const NumberTick = styled.p`

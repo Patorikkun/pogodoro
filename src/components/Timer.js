@@ -1,16 +1,17 @@
 import React from "react";
 import PomodoroSlider from "./PomodoroSlider";
-import StartButton from "./StartButton";
+
 import TimerPointer from "../assets/Pointer.js";
 import styled from "styled-components";
+import StartButton from "./StartButton";
 
-const Timer = () => {
+const Timer = ({ isOpen, setIsOpen }) => {
   return (
     <TimerContainer>
       <TimerCount>15:00</TimerCount>
       <TimerPointer></TimerPointer>
       <PomodoroSlider></PomodoroSlider>
-      <StartButton></StartButton>
+      <StartButton isOpen={isOpen} setIsOpen={setIsOpen}></StartButton>
     </TimerContainer>
   );
 };

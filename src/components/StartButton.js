@@ -1,15 +1,28 @@
 import React from "react";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
-const StartButton = () => {
+const StartButton = ({ isOpen, setIsOpen }) => {
+  const debugg = () => {
+    console.log("hey");
+  };
   return (
-    <StyledButton>
-      <p>S T A R T</p>
+    <StyledButton
+      onClick={() => {
+        setIsOpen(!isOpen);
+      }}
+      whileHover={{
+        fontWeight: "bold",
+        backgroundColor: "whitesmoke",
+      }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <ButtonText whileHover={{ color: "#A4AAE0" }}>S T A R T</ButtonText>
     </StyledButton>
   );
 };
 
-const StyledButton = styled.div`
+const StyledButton = styled(motion.div)`
   height: 0.5em;
   width: 2em;
   border: 0.1rem solid white;
@@ -17,11 +30,18 @@ const StyledButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
 
-  p {
-    color: white;
-    font-size: 1rem;
-  }
+const ButtonText = styled(motion.p)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //border: 1px solid red;
+  height: 100%;
+  width: 100%;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
 `;
 
 export default StartButton;

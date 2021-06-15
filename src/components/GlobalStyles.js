@@ -10,13 +10,15 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
    font-family: 'Open Sans Hebrew', serif;
+   user-select: none;
 }
 
 .main {
     background-color: #A4AAE0;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
 }
 

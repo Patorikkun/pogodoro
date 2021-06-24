@@ -17,6 +17,14 @@ const PomodoroSlider = () => {
         marginBottom: "1rem",
       }}
     >
+      <Tick className="space"></Tick>
+      <Tick className="space"></Tick>
+      <Tick className="space"></Tick>
+      <Tick className="space"></Tick>
+      <Tick className="space"></Tick>
+      <Tick className="space"></Tick>
+      <Tick className="space"></Tick>
+      <Tick className="space"></Tick>
       <BigTick>
         <Tick className="big"></Tick>
         <NumberTick>0</NumberTick>
@@ -70,6 +78,14 @@ const PomodoroSlider = () => {
         <Tick className="big"></Tick>
         <NumberTick>30</NumberTick>
       </BigTick>
+      <Tick className="space"></Tick>
+      <Tick className="space"></Tick>
+      <Tick className="space"></Tick>
+      <Tick className="space"></Tick>
+      <Tick className="space"></Tick>
+      <Tick className="space"></Tick>
+      <Tick className="space"></Tick>
+      <Tick className="space"></Tick>
     </ScrollContainer>
   );
 };
@@ -99,6 +115,10 @@ const Tick = styled.div`
 
   &.big {
     height: 60%;
+  }
+
+  &.space {
+    opacity: 0;
   }
 `;
 

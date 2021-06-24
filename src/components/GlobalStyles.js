@@ -11,15 +11,28 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
    font-family: 'Open Sans Hebrew', serif;
    user-select: none;
+ 
+}
+.App {
+  background-color: #A4AAE0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .main {
-    background-color: #A4AAE0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+
+ position: relative;
+  
+    height: 100vh;
+    width: 100vw;
+    
+   display: flex;
+   flex-direction: column;
+  //justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 

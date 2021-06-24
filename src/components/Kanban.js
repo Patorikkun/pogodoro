@@ -1,20 +1,65 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import KanbanSection from "./KanbanSection";
+import AddSectionButton from "./AddSectionButton";
+import { motion, AnimatePresence } from "framer-motion";
+import { v4 as uuidv4 } from "uuid";
 
-const Kanban = ({ isOpen, setIsOpen }) => {
+const Kanban = ({
+  isOpen,
+  setIsOpen,
+  isHover,
+  setIsHover,
+  sections,
+  setSections,
+  nextSectionId,
+  setNextSectionId,
+  sectionTitle,
+  setSectionTitle,
+}) => {
   return (
-    <StyledKanban
-      style={isOpen ? { display: "block" } : { display: "none" }}
-    ></StyledKanban>
+    <AnimatePresence>
+      {isOpen && (
+        <StyledKanban
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, y: 130 }}
+          exit={{ opacity: 0 }}
+
+          //style={isOpen ? { display: "block" } : { display: "none" }}
+        >
+          {sections.map((section) => (
+            <KanbanSection
+              key={section.id}
+              sectionId={section.id}
+              setIsOpen={setIsOpen}
+              isOpen={isOpen}
+              isHover={isHover}
+              setIsHover={setIsHover}
+              sections={sections}
+              setSections={setSections}
+              nextSectionId={nextSectionId}
+              setNextSectionId={setNextSectionId}
+              sectionTitle={sectionTitle}
+              setSectionTitle={setSectionTitle}
+            ></KanbanSection>
+          ))}
+        </StyledKanban>
+      )}
+    </AnimatePresence>
   );
 };
 
 const StyledKanban = styled(motion.div)`
-  display: none;
-  height: 40vh;
-  width: 50%;
-  background-color: whitesmoke;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-height: 70vh;
+  width: 60vw;
+
+  border: 1px solid white;
+  position: absolute;
 `;
 
 export default Kanban;

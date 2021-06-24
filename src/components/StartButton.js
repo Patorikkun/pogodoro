@@ -23,7 +23,7 @@ const StartButton = ({ isOpen, setIsOpen }) => {
 };
 
 const StyledButton = styled(motion.div)`
-  height: 0.5em;
+  height: 0.6em;
   width: 2em;
   border: 0.1rem solid white;
   border-radius: 0.5rem;

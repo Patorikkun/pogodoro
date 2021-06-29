@@ -16,6 +16,8 @@ const Kanban = ({
   setNextSectionId,
   sectionTitle,
   setSectionTitle,
+  taskNote,
+  setTaskNote,
 }) => {
   return (
     <AnimatePresence>
@@ -31,16 +33,17 @@ const Kanban = ({
             <KanbanSection
               key={section.id}
               sectionId={section.id}
+              tasks={section.tasks}
               setIsOpen={setIsOpen}
               isOpen={isOpen}
               isHover={isHover}
               setIsHover={setIsHover}
               sections={sections}
               setSections={setSections}
-              nextSectionId={nextSectionId}
-              setNextSectionId={setNextSectionId}
               sectionTitle={sectionTitle}
               setSectionTitle={setSectionTitle}
+              taskNote={taskNote}
+              setTaskNote={setTaskNote}
             ></KanbanSection>
           ))}
         </StyledKanban>

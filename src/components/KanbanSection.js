@@ -10,11 +10,12 @@ const KanbanSection = ({
   setIsHover,
   sections,
   setSections,
-  nextSectionId,
-  setNextSectionId,
+  tasks,
   sectionTitle,
   setSectionTitle,
   sectionId,
+  taskNote,
+  setTaskNote,
 }) => {
   const debugg = () => {
     console.log("hovveeerrrr");
@@ -36,7 +37,14 @@ const KanbanSection = ({
 
         <EllipsisBuutton></EllipsisBuutton>
       </SectionHeader>
-      <KanbanTaskList></KanbanTaskList>
+      <KanbanTaskList
+        tasks={tasks}
+        setSections={setSections}
+        sections={sections}
+        sectionId={sectionId}
+        taskNote={taskNote}
+        setTaskNote={setTaskNote}
+      ></KanbanTaskList>
       <AddSectionBorder
         animate={isHover ? { backgroundColor: "rgb(255,255,255)" } : {}}
       >

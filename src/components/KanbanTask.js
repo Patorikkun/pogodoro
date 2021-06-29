@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const KanbanTask = () => {
+const KanbanTask = ({ note }) => {
   return (
     <StyledTask>
       <CheckTask type="checkbox"></CheckTask>
-      <LabelTask>Pogodoro</LabelTask>
+      <LabelTask>{note}</LabelTask>
     </StyledTask>
   );
 };

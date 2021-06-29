@@ -10,7 +10,11 @@ import { v4 as uuidv4 } from "uuid";
 
 function App() {
   //data management
-  const [sections, setSections] = useState([{ id: uuidv4() }]);
+  const [sections, setSections] = useState([
+    { id: uuidv4(), tasks: ["yo", "oy"] },
+  ]);
+
+  const [taskNote, setTaskNote] = useState("");
   const [sectionTitle, setSectionTitle] = useState("");
   const [nextSectionId, setNextSectionId] = useState("");
 
@@ -22,6 +26,16 @@ function App() {
   //  setSections((sections) => [...sections, newSection]);
   // };
 
+  // BASIS FUNCTION FOR ADD TASKS
+  /*
+  const addItem = () => {
+    const newState = sections.map((el) =>
+      1 === 1 ? { ...el, tasks: [...el.tasks, "yoooo"] } : el
+    );
+    setSections(newState);
+    console.log("added");
+  };
+*/
   return (
     <div className="App">
       <GlobalStyles></GlobalStyles>
@@ -39,6 +53,8 @@ function App() {
           setNextSectionId={setNextSectionId}
           sectionTitle={sectionTitle}
           setSectionTitle={setSectionTitle}
+          taskNote={taskNote}
+          setTaskNote={setTaskNote}
         ></Kanban>
       </section>
     </div>

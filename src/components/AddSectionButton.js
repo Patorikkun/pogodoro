@@ -14,18 +14,14 @@ const AddSectionButton = ({
   setSectionTitle,
   sectionId,
 }) => {
-  const focusedSection = sections
-    .filter((s) => s.id == sectionId)
-    .map((s) => s.id);
-
   //filter the hovered div using array filter
   return (
     <AddSectionDiv
-      onClick={() => setSections([...sections, { id: uuidv4() }])}
+      onClick={() => setSections([...sections, { id: uuidv4(), tasks: [] }])}
       onMouseEnter={() => {
         setIsHover(!isHover);
-        console.log(focusedSection);
-        console.log(sectionId);
+
+        // console.log(sectionId);
       }}
       onMouseLeave={() => {
         setIsHover(!isHover);

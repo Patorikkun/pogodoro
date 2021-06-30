@@ -20,22 +20,12 @@ function App() {
 
   //animation effects
   const [isOpen, setIsOpen] = useState(false); //open kanban
-  const [isHover, setIsHover] = useState(false); // add section hover
+  const [isHover, setIsHover] = useState(null); // add section hover
 
   // const addSection = (newSection) => {
   //  setSections((sections) => [...sections, newSection]);
   // };
 
-  // BASIS FUNCTION FOR ADD TASKS
-  /*
-  const addItem = () => {
-    const newState = sections.map((el) =>
-      1 === 1 ? { ...el, tasks: [...el.tasks, "yoooo"] } : el
-    );
-    setSections(newState);
-    console.log("added");
-  };
-*/
   return (
     <div className="App">
       <GlobalStyles></GlobalStyles>

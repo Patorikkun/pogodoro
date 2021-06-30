@@ -46,7 +46,9 @@ const KanbanSection = ({
         setTaskNote={setTaskNote}
       ></KanbanTaskList>
       <AddSectionBorder
-        animate={isHover ? { backgroundColor: "rgb(255,255,255)" } : {}}
+        animate={
+          isHover === sectionId ? { backgroundColor: "rgb(255,255,255)" } : {}
+        }
       >
         <AddSectionButton
           sectionId={sectionId}

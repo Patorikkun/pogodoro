@@ -14,22 +14,19 @@ const AddSectionButton = ({
   setSectionTitle,
   sectionId,
 }) => {
-  //filter the hovered div using array filter
   return (
     <AddSectionDiv
       onClick={() => setSections([...sections, { id: uuidv4(), tasks: [] }])}
       onMouseEnter={() => {
-        setIsHover(!isHover);
-
-        // console.log(sectionId);
+        setIsHover(sectionId);
       }}
       onMouseLeave={() => {
-        setIsHover(!isHover);
+        setIsHover(null);
       }}
       // whileHover={{ backgroundColor: "rgb(255, 255, 255)" }}
-      style={isHover ? { backgroundColor: "#A4AAE0" } : {}}
+      style={isHover === sectionId && { backgroundColor: "#A4AAE0" }}
     >
-      {isHover && <p>Add Section</p>}
+      {isHover === sectionId && <p>Add Section</p>}
     </AddSectionDiv>
   );
 };

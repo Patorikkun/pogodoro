@@ -1,23 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+
+import { motion } from "framer-motion";
+import styled from "styled-components";
+import GlobalStyles from "./components/GlobalStyles";
+import Timer from "./components/Timer";
+import myTasks from "./data.js";
+import Kanban from "./components/Kanban";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
+  //data management
+  const [sections, setSections] = useState([
+    { id: uuidv4(), tasks: ["yo", "oy"] },
+  ]);
+
+  const [taskNote, setTaskNote] = useState("");
+  const [sectionTitle, setSectionTitle] = useState("");
+  const [nextSectionId, setNextSectionId] = useState("");
+
+  //animation effects
+  const [isOpen, setIsOpen] = useState(false); //open kanban
+  const [isHover, setIsHover] = useState(null); // add section hover
+
+  // const addSection = (newSection) => {
+  //  setSections((sections) => [...sections, newSection]);
+  // };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <GlobalStyles></GlobalStyles>
+      <section className="main">
+        <Timer setIsOpen={setIsOpen} isOpen={isOpen}></Timer>
+
+        <Kanban
+          setIsOpen={setIsOpen}
+          isOpen={isOpen}
+          isHover={isHover}
+          setIsHover={setIsHover}
+          sections={sections}
+          setSections={setSections}
+          nextSectionId={nextSectionId}
+          setNextSectionId={setNextSectionId}
+          sectionTitle={sectionTitle}
+          setSectionTitle={setSectionTitle}
+          taskNote={taskNote}
+          setTaskNote={setTaskNote}
+        ></Kanban>
+      </section>
     </div>
   );
 }

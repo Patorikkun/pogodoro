@@ -15,7 +15,7 @@ function App() {
   ]);
 
   const [taskNote, setTaskNote] = useState("");
-  const [sectionTitle, setSectionTitle] = useState("");
+
   const [nextSectionId, setNextSectionId] = useState("");
 
   //animation effects
@@ -41,8 +41,6 @@ function App() {
           setSections={setSections}
           nextSectionId={nextSectionId}
           setNextSectionId={setNextSectionId}
-          sectionTitle={sectionTitle}
-          setSectionTitle={setSectionTitle}
           taskNote={taskNote}
           setTaskNote={setTaskNote}
         ></Kanban>

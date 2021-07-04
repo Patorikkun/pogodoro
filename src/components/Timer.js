@@ -17,7 +17,7 @@ const Timer = ({ isOpen, setIsOpen }) => {
     >
       <TimerCount
         onClick={expandTimer}
-        style={isOpen ? { fontSize: "3rem" } : {}}
+        style={isOpen ? { fontSize: "3rem", cursor: "pointer" } : {}}
       >
         15:00
       </TimerCount>

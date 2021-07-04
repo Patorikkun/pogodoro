@@ -10,6 +10,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
    font-family: 'Open Sans Hebrew', serif;
+   
    user-select: none;
  
 }

@@ -14,8 +14,7 @@ const Kanban = ({
   setSections,
   nextSectionId,
   setNextSectionId,
-  sectionTitle,
-  setSectionTitle,
+
   taskNote,
   setTaskNote,
 }) => {
@@ -33,6 +32,7 @@ const Kanban = ({
             <KanbanSection
               key={section.id}
               sectionId={section.id}
+              sectionTitle={section.title}
               tasks={section.tasks}
               setIsOpen={setIsOpen}
               isOpen={isOpen}
@@ -40,8 +40,6 @@ const Kanban = ({
               setIsHover={setIsHover}
               sections={sections}
               setSections={setSections}
-              sectionTitle={sectionTitle}
-              setSectionTitle={setSectionTitle}
               taskNote={taskNote}
               setTaskNote={setTaskNote}
             ></KanbanSection>

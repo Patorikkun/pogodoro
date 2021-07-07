@@ -2,7 +2,7 @@ import React from "react";
 import ScrollContainer from "react-indiana-drag-scroll";
 import styled from "styled-components";
 
-const PomodoroSlider = () => {
+const PomodoroSlider = (el) => {
   return (
     <ScrollContainer
       vertical={false}

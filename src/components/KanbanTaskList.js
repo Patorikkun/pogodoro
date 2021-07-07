@@ -34,7 +34,7 @@ const KanbanTaskList = ({
 const StyledList = styled.ul`
   margin-top: 1em;
   list-style-type: none;
-  //border: 1px solid red;
+  // border: 1px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;

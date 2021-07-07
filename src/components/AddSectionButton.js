@@ -13,10 +13,18 @@ const AddSectionButton = ({
   sectionTitle,
   setSectionTitle,
   sectionId,
+  index,
 }) => {
+  const AddSection = (e) => {
+    const newArray = [...sections];
+    newArray.splice(e.target.id + 1, 0, { id: uuidv4(), tasks: [] });
+    setSections(newArray);
+  };
+
   return (
     <AddSectionDiv
-      onClick={() => setSections([...sections, { id: uuidv4(), tasks: [] }])}
+      //onClick={() => setSections([...sections, { id: uuidv4(), tasks: [] }])}
+      onClick={AddSection}
       onMouseEnter={() => {
         setIsHover(sectionId);
       }}

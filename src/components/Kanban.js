@@ -28,8 +28,9 @@ const Kanban = ({
 
           //style={isOpen ? { display: "block" } : { display: "none" }}
         >
-          {sections.map((section) => (
+          {sections.map((section, index) => (
             <KanbanSection
+              index={index}
               key={section.id}
               sectionId={section.id}
               sectionTitle={section.title}
@@ -54,10 +55,11 @@ const StyledKanban = styled(motion.div)`
   margin: auto;
   display: flex;
   align-items: center;
+
   overflow-x: auto;
   overflow-y: hidden;
-  min-height: 70vh;
-  width: 60vw;
+  height: 70vh;
+  width: 65%;
 
   border: 1px solid white;
   position: absolute;

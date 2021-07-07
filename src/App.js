@@ -6,13 +6,12 @@ import GlobalStyles from "./components/GlobalStyles";
 import Timer from "./components/Timer";
 import myTasks from "./data.js";
 import Kanban from "./components/Kanban";
+import KanbanToggle from "./components/KanbanToggle";
 import { v4 as uuidv4 } from "uuid";
 
 function App() {
   //data management
-  const [sections, setSections] = useState([
-    { id: uuidv4(), tasks: ["yo", "oy"] },
-  ]);
+  const [sections, setSections] = useState([{ id: uuidv4(), tasks: [] }]);
 
   const [taskNote, setTaskNote] = useState("");
 
@@ -30,6 +29,7 @@ function App() {
     <div className="App">
       <GlobalStyles></GlobalStyles>
       <section className="main">
+        <KanbanToggle isOpen={isOpen} setIsOpen={setIsOpen}></KanbanToggle>
         <Timer setIsOpen={setIsOpen} isOpen={isOpen}></Timer>
 
         <Kanban

@@ -13,6 +13,7 @@ const KanbanSection = ({
   tasks,
   sectionTitle,
   sectionId,
+  index,
   taskNote,
   setTaskNote,
 }) => {
@@ -72,6 +73,7 @@ const KanbanSection = ({
         }
       >
         <AddSectionButton
+          index={index}
           sectionId={sectionId}
           sections={sections}
           setSections={setSections}
@@ -86,9 +88,15 @@ const KanbanSection = ({
 const StyledKanbanSection = styled.div`
   // border-right: 1px solid red;
 
-  height: 65vh;
+  height: 90%;
   position: relative;
   min-width: 17em;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    opacity: 0;
+  }
 `;
 
 const SectionHeader = styled.form`

@@ -1,4 +1,10 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, {
+  Fragment,
+  useState,
+  useEffect,
+  useMemo,
+  useDebugValue,
+} from "react";
 import PomodoroSlider from "./PomodoroSlider";
 import { motion, AnimatePresence } from "framer-motion";
 import TimerPointer from "../assets/Pointer.js";
@@ -11,7 +17,9 @@ import ResetButton from "./ResetButton";
 import PauseButton from "./PauseButton";
 const Timer = ({ isOpen, setIsOpen }) => {
   const [showReset, setShowReset] = useState(false);
+  const [timerReset, setTimerReset] = useState(true);
   const [timerStart, setTimerStart] = useState(false);
+  const [timerPaused, setTimerPaused] = useState(false);
   const [showCounter, setShowCounter] = useState(false);
   const [minutes, setMinutes] = useState(15);
   const [seconds, setSeconds] = useState(0);
@@ -23,12 +31,12 @@ const Timer = ({ isOpen, setIsOpen }) => {
     isOpen ? setIsOpen(!isOpen) : null;
   };
 
-  const addTime = () => {
-    setMinutes(minutes + 1);
+  const addTimeSeconds = () => {
+    setSeconds((m) => (m !== 59 ? m + 1 : (m = 0)));
   };
 
-  const subtractTime = () => {
-    setMinutes(minutes - 1);
+  const subtractTimeSeconds = () => {
+    setSeconds((m) => m - 1);
   };
 
   return (
@@ -46,24 +54,26 @@ const Timer = ({ isOpen, setIsOpen }) => {
           <SubtractIcon
             isOpen={isOpen}
             showCounter={showCounter}
-            subtractTime={subtractTime}
+            subtractTimeSeconds={subtractTimeSeconds}
           ></SubtractIcon>
         )}
-        {timerStart && (
-          <RunTimer
-            seconds={seconds}
-            minutes={minutes}
-            setMinutes={setMinutes}
-            setSeconds={setSeconds}
-            secondsLeft={secondsLeft}
-          ></RunTimer>
-        )}
+        <RunTimer
+          seconds={seconds}
+          minutes={minutes}
+          setMinutes={setMinutes}
+          setSeconds={setSeconds}
+          secondsLeft={secondsLeft}
+          timerReset={timerReset}
+          setTimerReset={setTimerReset}
+          timerStart={timerStart}
+          setTimerStart={setTimerStart}
+        ></RunTimer>
         {minutesLeft}:{secondsLeft}
         {!isOpen && (
           <AddTimeIcon
             isOpen={isOpen}
             showCounter={showCounter}
-            addTime={addTime}
+            addTimeSeconds={addTimeSeconds}
           ></AddTimeIcon>
         )}
       </TimerCount>
@@ -72,36 +82,57 @@ const Timer = ({ isOpen, setIsOpen }) => {
         {!isOpen && (
           <Fragment>
             <TimerPointer></TimerPointer>
-            <PomodoroSlider></PomodoroSlider>
+
+            <PomodoroSlider
+              id="scrolling-container"
+              minutes={minutes}
+              setMinutes={setMinutes}
+              seconds={seconds}
+              setSeconds={setSeconds}
+            ></PomodoroSlider>
             <ButtonsContainer
-              style={
-                (timerStart && showReset) || (!timerStart && showReset)
-                  ? { width: "75%" }
-                  : {}
-              }
+              style={!timerStart && timerPaused ? { width: "75%" } : {}}
             >
-              {(timerStart && showReset) || (!timerStart && showReset) ? (
+              {(timerStart === true && timerReset === false) ||
+              (timerStart === false &&
+                timerPaused === true &&
+                timerReset === false) ? (
                 <PauseButton
                   showReset={showReset}
                   setShowReset={setShowReset}
                   timerStart={timerStart}
                   setTimerStart={setTimerStart}
+                  timerPaused={timerPaused}
+                  setTimerPaused={setTimerPaused}
+                  setTimerReset={setTimerReset}
                 ></PauseButton>
               ) : null}
-              {!timerStart && !showReset ? (
+              {(timerStart === false && timerReset === true) ||
+              (timerStart === false &&
+                timerReset === true &&
+                timerPaused === false) ? (
                 <StartButton
                   setShowReset={setShowReset}
                   timerStart={timerStart}
                   setTimerStart={setTimerStart}
+                  timerPaused={timerPaused}
+                  setTimerPaused={setTimerPaused}
+                  setTimerReset={setTimerReset}
                 ></StartButton>
               ) : null}
 
-              {showReset && (
+              {timerPaused === true && timerReset === false && (
                 <ResetButton
                   minutes={minutes}
                   setMinutes={setMinutes}
                   timerStart={timerStart}
                   setTimerStart={setTimerStart}
+                  setSeconds={setSeconds}
+                  timerReset={timerReset}
+                  setTimerReset={setTimerReset}
+                  timerPaused={timerPaused}
+                  setTimerPaused={setTimerPaused}
+                  setTimerReset={setTimerReset}
                 ></ResetButton>
               )}
             </ButtonsContainer>

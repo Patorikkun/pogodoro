@@ -61,7 +61,8 @@ const StyledKanban = styled(motion.div)`
   height: 70vh;
   width: 65%;
 
-  border: 1px solid white;
+  border: 1px solid rgb(255, 255, 255, 0.7);
+
   position: absolute;
 `;
 

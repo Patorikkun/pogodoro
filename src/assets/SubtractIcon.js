@@ -2,10 +2,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-const SubtractIcon = ({ subtractTime, showCounter, isOpen }) => {
+const SubtractIcon = ({ subtractTimeSeconds, showCounter, isOpen }) => {
   return (
     <StyledSubtractIcon
-      onClick={subtractTime}
+      onClick={subtractTimeSeconds}
       whileHover={{ scale: 1.2 }}
       whileTap={{ scale: 0.9 }}
       initial={{ x: -10 }}

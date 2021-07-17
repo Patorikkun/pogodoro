@@ -7,12 +7,17 @@ const StartButton = ({
   setTimerStart,
   showReset,
   setShowReset,
+  useTimerStatus,
+  timerPaused,
+  setTimerPaused,
+  setTimerReset,
 }) => {
   return (
     <StyledButton
       onClick={() => {
         setTimerStart(!timerStart);
-        setShowReset(true);
+        // setShowReset(true);
+        setTimerReset(false);
       }}
       whileHover={{
         fontWeight: "bold",

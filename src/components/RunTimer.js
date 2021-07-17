@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useRef } from "react";
 
 const RunTimer = ({
   seconds,
@@ -6,21 +6,35 @@ const RunTimer = ({
   setSeconds,
   setMinutes,
   secondsLeft,
+  timerReset,
+  setTimerReset,
+  timerStart,
+  setTimerStart,
 }) => {
-  useEffect(() => {
-    let interval = setInterval(() => {
-      clearInterval(interval);
+  let timeInterval = null;
 
-      if (seconds === 0) {
-        if (minutes !== 0) {
-          setSeconds(59);
-          setMinutes(minutes - 1);
-        }
-      } else {
-        setSeconds(seconds - 1);
-      }
-    }, 1000);
-  }, [secondsLeft]);
+  const resetTimer = () => {
+    clearInterval(timeInterval);
+  };
+
+  timerStart
+    ? useEffect(() => {
+        timeInterval = setInterval(() => {
+          clearInterval(timeInterval);
+
+          if (seconds === 0) {
+            if (minutes !== 0) {
+              setSeconds(59);
+              setMinutes(minutes - 1);
+            }
+          } else {
+            setSeconds(seconds - 1);
+          }
+        }, 1000);
+      }, [secondsLeft])
+    : null;
+
+  timerReset ? resetTimer() : null;
 
   return <Fragment></Fragment>;
 };

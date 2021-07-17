@@ -1,13 +1,29 @@
-import React from "react";
+import React, { useState, useDebugValue } from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-const ResetButton = ({ timerStart, setTimerStart, minutes, setMinutes }) => {
+const ResetButton = ({
+  timerStart,
+  setTimerStart,
+  minutes,
+  setMinutes,
+  setSeconds,
+  timerReset,
+  setTimerReset,
+  timerPaused,
+  setTimerPaused,
+}) => {
+  //const initState = 0;
+  const resetTime = () => {
+    setTimerStart(false);
+    setTimerReset(true);
+    setTimerPaused(false);
+    setMinutes(0);
+    setSeconds(0);
+  };
   return (
     <StyledButton
-      onClick={() => {
-        setTimerStart(!timerStart);
-      }}
+      onClick={resetTime}
       whileHover={{
         fontWeight: "bold",
         backgroundColor: "whitesmoke",

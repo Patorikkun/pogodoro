@@ -42,7 +42,7 @@ const KanbanSection = ({
   };
 
   return (
-    <StyledKanbanSection>
+    <StyledKanbanSection id="scroll">
       {!savedSection ? (
         <SectionHeader id="clear-on-submit-header" onSubmit={saveSectionTitle}>
           <SectionTitle
@@ -91,12 +91,6 @@ const StyledKanbanSection = styled.div`
   height: 90%;
   position: relative;
   min-width: 17em;
-  overflow-y: auto;
-  overflow-x: hidden;
-  scrollbar-width: thin;
-  &::-webkit-scrollbar {
-    opacity: 0;
-  }
 `;
 
 const SectionHeader = styled.form`

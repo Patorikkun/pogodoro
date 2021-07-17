@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import EllipsisBuutton from "../assets/EllipsisButton";
 
-const SavedSection = ({ sectionTitle }) => {
+const SavedSection = ({ sectionTitle, taskLength }) => {
+  console.log(taskLength);
   return (
     <StyledSavedSection>
       <SavedSectionHeading>
         <SavedSectionTitle>{sectionTitle}</SavedSectionTitle>
-        <ItemsLeft>3</ItemsLeft>
+        <ItemsLeft>{taskLength}</ItemsLeft>
       </SavedSectionHeading>
       <EllipsisBuutton></EllipsisBuutton>
     </StyledSavedSection>

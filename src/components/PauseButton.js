@@ -7,12 +7,19 @@ const PauseButton = ({
   setTimerStart,
   showReset,
   setShowReset,
+  timerPaused,
+  setTimerPaused,
+  setTimerReset,
 }) => {
   return (
     <StyledButton
       onClick={() => {
         setTimerStart(!timerStart);
-        setShowReset(true);
+        setTimerPaused(!timerPaused);
+        setTimerReset(false);
+        timerStart === false && setShowReset(true);
+        var a = performance.now();
+        console.log("yoooo");
       }}
       whileHover={{
         fontWeight: "bold",
@@ -21,7 +28,7 @@ const PauseButton = ({
       whileTap={{ scale: 0.95 }}
     >
       <ButtonText whileHover={{ color: "#A4AAE0" }}>
-        {timerStart ? "P A U S E" : "R E S U M E"}
+        {timerPaused === false ? "P A U S E" : "R E S U M E"}
       </ButtonText>
     </StyledButton>
   );

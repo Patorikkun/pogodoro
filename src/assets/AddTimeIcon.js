@@ -2,10 +2,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-const AddTimeIcon = ({ addTime, showCounter, isOpen }) => {
+const AddTimeIcon = ({ addTimeSeconds, showCounter, isOpen }) => {
   return (
     <StyledAddTimeIcon
-      onClick={addTime}
+      onClick={addTimeSeconds}
       whileHover={{ scale: 1.2 }}
       whileTap={{ scale: 0.9 }}
       initial={{ x: 10 }}

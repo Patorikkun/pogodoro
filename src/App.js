@@ -7,7 +7,9 @@ import Timer from "./components/Timer";
 import myTasks from "./data.js";
 import Kanban from "./components/Kanban";
 import KanbanToggle from "./components/KanbanToggle";
+import Calendar from "./components/Calendar";
 import { v4 as uuidv4 } from "uuid";
+import Calender from "./components/Calendar";
 
 function App() {
   //data management
@@ -30,6 +32,7 @@ function App() {
       <GlobalStyles></GlobalStyles>
       <section className="main">
         <KanbanToggle isOpen={isOpen} setIsOpen={setIsOpen}></KanbanToggle>
+        <Calender></Calender>
         <Timer setIsOpen={setIsOpen} isOpen={isOpen}></Timer>
 
         <Kanban

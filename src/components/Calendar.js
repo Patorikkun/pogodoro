@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 const Calender = () => {
   const dateRef = new Date();
-  dateRef.setMonth(8);
-  dateRef.setDate(1);
+  //dateRef.setMonth(8);
+  // dateRef.setDate(30);
   const monthToday = dateRef.getMonth();
   const dayToday = dateRef.getDay();
   const dateToday = dateRef.getDate();
@@ -42,18 +42,36 @@ const Calender = () => {
 
   const getWeekDate = (index) => {
     let result = null;
+
     let firstDayOfMonth = new Date(
       dateRef.getFullYear(),
       dateRef.getMonth(),
       1
     );
-    let lastDayofMonth = new Date(
+
+    let lastDayOfMonth = new Date(
       dateRef.getFullYear(),
       dateRef.getMonth() + 1,
       0
     );
 
-    let lastDate = lastDayofMonth.getDate();
+    let firstDayOfNextMonth = new Date(
+      dateRef.getFullYear(),
+      dateRef.getMonth() + 1,
+      1
+    );
+
+    let lastDayOfPreviousMonth = new Date(
+      dateRef.getFullYear(),
+      dateRef.getMonth(),
+      0
+    );
+
+    let firstDate = firstDayOfMonth.getDate();
+    let lastDate = lastDayOfMonth.getDate();
+    let nextMonthDate = firstDayOfNextMonth.getDate();
+    let previousMonthDate = lastDayOfPreviousMonth.getDate();
+
     if (index == dayToday) {
       result = dateToday;
     } else if (index > dayToday) {
@@ -62,9 +80,15 @@ const Calender = () => {
       result = dateToday - (dayToday - index);
     }
 
-    return result > lastDate || result <= 0 ? null : result;
-    // do a fix of previous month's dates
     console.log(lastDate);
+    console.log(lastDayOfPreviousMonth);
+    console.log(nextMonthDate);
+
+    if (result > lastDate) {
+      return nextMonthDate + (index - dayToday) - 1; // returns next month's dates
+    } else if (result < firstDate) {
+      return previousMonthDate - (dayToday - index) + 1; // returns previous month's dates
+    } else return result;
   };
 
   return (

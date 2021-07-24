@@ -1,10 +1,39 @@
-import React from "react";
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  useMemo,
+  useCallback,
+} from "react";
 import ScrollContainer from "react-indiana-drag-scroll";
 import styled from "styled-components";
 
-const PomodoroSlider = () => {
+const PomodoroSlider = ({ seconds, setSeconds, minutes, setMinutes }) => {
+  const dragScrollElement = useRef(null);
+
+  const handleScroll = () => {
+    const scrollableHeight =
+      dragScrollElement.current.container.current.scrollWidth -
+      dragScrollElement.current.container.current.offsetWidth;
+
+    const amountScrolled = dragScrollElement.current.scrollLeft;
+    const rangeValue = (amountScrolled / scrollableHeight) * 30;
+
+    setMinutes(Math.round(rangeValue));
+
+    minutes == 30 ? setSeconds(0) : null;
+  };
+
+  useEffect(() => {
+    dragScrollElement.current.container.current.scrollLeft = minutes * 20;
+  }, [minutes]);
+
   return (
     <ScrollContainer
+      className="container"
+      ref={dragScrollElement}
+      onScroll={handleScroll}
+      id="scrolling-container"
       vertical={false}
       style={{
         display: "grid",

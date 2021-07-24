@@ -6,16 +6,17 @@ import GlobalStyles from "./components/GlobalStyles";
 import Timer from "./components/Timer";
 import myTasks from "./data.js";
 import Kanban from "./components/Kanban";
+import KanbanToggle from "./components/KanbanToggle";
+import Calendar from "./components/Calendar";
 import { v4 as uuidv4 } from "uuid";
+import Calender from "./components/Calendar";
 
 function App() {
   //data management
-  const [sections, setSections] = useState([
-    { id: uuidv4(), tasks: ["yo", "oy"] },
-  ]);
+  const [sections, setSections] = useState([{ id: uuidv4(), tasks: [] }]);
 
   const [taskNote, setTaskNote] = useState("");
-  const [sectionTitle, setSectionTitle] = useState("");
+
   const [nextSectionId, setNextSectionId] = useState("");
 
   //animation effects
@@ -30,6 +31,8 @@ function App() {
     <div className="App">
       <GlobalStyles></GlobalStyles>
       <section className="main">
+        <KanbanToggle isOpen={isOpen} setIsOpen={setIsOpen}></KanbanToggle>
+        <Calender></Calender>
         <Timer setIsOpen={setIsOpen} isOpen={isOpen}></Timer>
 
         <Kanban
@@ -41,8 +44,6 @@ function App() {
           setSections={setSections}
           nextSectionId={nextSectionId}
           setNextSectionId={setNextSectionId}
-          sectionTitle={sectionTitle}
-          setSectionTitle={setSectionTitle}
           taskNote={taskNote}
           setTaskNote={setTaskNote}
         ></Kanban>

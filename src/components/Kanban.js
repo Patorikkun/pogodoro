@@ -14,8 +14,7 @@ const Kanban = ({
   setSections,
   nextSectionId,
   setNextSectionId,
-  sectionTitle,
-  setSectionTitle,
+
   taskNote,
   setTaskNote,
 }) => {
@@ -29,10 +28,12 @@ const Kanban = ({
 
           //style={isOpen ? { display: "block" } : { display: "none" }}
         >
-          {sections.map((section) => (
+          {sections.map((section, index) => (
             <KanbanSection
+              index={index}
               key={section.id}
               sectionId={section.id}
+              sectionTitle={section.title}
               tasks={section.tasks}
               setIsOpen={setIsOpen}
               isOpen={isOpen}
@@ -40,8 +41,6 @@ const Kanban = ({
               setIsHover={setIsHover}
               sections={sections}
               setSections={setSections}
-              sectionTitle={sectionTitle}
-              setSectionTitle={setSectionTitle}
               taskNote={taskNote}
               setTaskNote={setTaskNote}
             ></KanbanSection>
@@ -56,12 +55,14 @@ const StyledKanban = styled(motion.div)`
   margin: auto;
   display: flex;
   align-items: center;
+
   overflow-x: auto;
   overflow-y: hidden;
-  min-height: 70vh;
-  width: 60vw;
+  height: 70vh;
+  width: 65%;
 
-  border: 1px solid white;
+  border: 1px solid rgb(255, 255, 255, 0.7);
+
   position: absolute;
 `;
 

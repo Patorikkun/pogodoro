@@ -3,8 +3,8 @@ import styled from "styled-components";
 import AddSectionButton from "./AddSectionButton";
 import { motion } from "framer-motion";
 import EllipsisBuutton from "../assets/EllipsisButton";
-
 import KanbanTaskList from "./KanbanTaskList";
+import SavedSection from "./SavedSection";
 const KanbanSection = ({
   isHover,
   setIsHover,
@@ -12,31 +12,53 @@ const KanbanSection = ({
   setSections,
   tasks,
   sectionTitle,
-  setSectionTitle,
   sectionId,
+  index,
   taskNote,
   setTaskNote,
 }) => {
+  const [sectionTitleInput, setSectionTitleInput] = useState("");
+
+  const [savedSection, setSavedSection] = useState(false);
+
   const debugg = () => {
     console.log("hovveeerrrr");
   };
 
   const userInputHandler = (e) => {
-    setSectionTitle(e.target.value);
+    setSectionTitleInput(e.target.value);
+  };
+
+  const saveSectionTitle = (e) => {
+    e.preventDefault();
+    const saveTask = sections.map((el) =>
+      el.id === sectionId ? { ...el, title: sectionTitleInput } : el
+    );
+
+    setSections(saveTask);
+
+    setSectionTitleInput(""); // clear input field
+    setSavedSection(!savedSection);
   };
 
   return (
-    <StyledKanbanSection>
-      <SectionHeader>
-        <SectionTitle
-          placeholder="Header Title"
-          value={sectionTitle}
-          type="text"
-          onChange={userInputHandler}
-        ></SectionTitle>
+    <StyledKanbanSection id="scroll">
+      {!savedSection ? (
+        <SectionHeader id="clear-on-submit-header" onSubmit={saveSectionTitle}>
+          <SectionTitle
+            placeholder="Header Title"
+            value={sectionTitleInput}
+            type="text"
+            onChange={userInputHandler}
+          ></SectionTitle>
+        </SectionHeader>
+      ) : (
+        <SavedSection
+          sectionTitle={sectionTitle}
+          taskLength={tasks.length}
+        ></SavedSection>
+      )}
 
-        <EllipsisBuutton></EllipsisBuutton>
-      </SectionHeader>
       <KanbanTaskList
         tasks={tasks}
         setSections={setSections}
@@ -51,6 +73,7 @@ const KanbanSection = ({
         }
       >
         <AddSectionButton
+          index={index}
           sectionId={sectionId}
           sections={sections}
           setSections={setSections}
@@ -65,13 +88,15 @@ const KanbanSection = ({
 const StyledKanbanSection = styled.div`
   // border-right: 1px solid red;
 
-  height: 65vh;
+  height: 90%;
   position: relative;
   min-width: 17em;
 `;
 
-const SectionHeader = styled.div`
-  //border: 1px solid red;
+const SectionHeader = styled.form`
+  border: 1px solid rgb(255, 255, 255, 0.3);
+  padding: 1em;
+  border-radius: 0.5em;
   width: 85%;
   height: 2.5em;
   margin: auto;

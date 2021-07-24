@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-const StartButton = ({
+const PauseButton = ({
   timerStart,
   setTimerStart,
   showReset,
   setShowReset,
-  useTimerStatus,
   timerPaused,
   setTimerPaused,
   setTimerReset,
@@ -16,8 +15,11 @@ const StartButton = ({
     <StyledButton
       onClick={() => {
         setTimerStart(!timerStart);
-        // setShowReset(true);
+        setTimerPaused(!timerPaused);
         setTimerReset(false);
+        timerStart === false && setShowReset(true);
+        var a = performance.now();
+        console.log("yoooo");
       }}
       whileHover={{
         fontWeight: "bold",
@@ -25,7 +27,9 @@ const StartButton = ({
       }}
       whileTap={{ scale: 0.95 }}
     >
-      <ButtonText whileHover={{ color: "#A4AAE0" }}>S T A R T</ButtonText>
+      <ButtonText whileHover={{ color: "#A4AAE0" }}>
+        {timerPaused === false ? "P A U S E" : "R E S U M E"}
+      </ButtonText>
     </StyledButton>
   );
 };
@@ -52,4 +56,4 @@ const ButtonText = styled(motion.p)`
   cursor: pointer;
 `;
 
-export default StartButton;
+export default PauseButton;
